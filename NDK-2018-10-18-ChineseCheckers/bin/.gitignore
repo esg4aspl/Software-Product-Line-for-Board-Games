@@ -1,1 +1,10 @@
+/board/
+/enums/
 /game/
+/goal/
+/move/
+/moveableInitialFinalCoordinates/
+/piece/
+/player/
+/provider/
+/view/
