@@ -104,7 +104,7 @@ public class Game implements IGoalProvider{
 		View view = new View(gc.getBoard());
 		IGoalPlugin goal = new PiecesToTarget();
 		Game game = new Game(view, gc.getBoard(), gc.getPlayers(),goal);
-		//Comment from Necati
+		//Comment from Necati...
 		game.start();
 
 	}
