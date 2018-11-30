@@ -18,6 +18,7 @@ import player.IPlayer;
 import provider.IGoalProvider;
 import view.View;
 
+
 public class Game implements IGoalProvider{
 	private Board board;
 	private List<IPlayer> players;
