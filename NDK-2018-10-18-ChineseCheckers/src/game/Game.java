@@ -18,7 +18,6 @@ import player.IPlayer;
 import provider.IGoalProvider;
 import view.View;
 
-
 public class Game implements IGoalProvider{
 	private Board board;
 	private List<IPlayer> players;
@@ -38,7 +37,7 @@ public class Game implements IGoalProvider{
 		this.referee = referee;
 		finalDestinationsForEachPlayer = new HashMap<IPlayer, List<Coordinate>>();
 	}
-
+	
 	public void mapPlayerAndFinishCoordinates(List<List<Coordinate>> coor) {
 		int i = 0;
 		for(IPlayer p : players) {
