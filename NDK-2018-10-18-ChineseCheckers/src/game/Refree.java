@@ -11,7 +11,6 @@ import goal.IGoalPlugin;
 import move.IMovePlugin;
 import move.IMoveRulePlugin;
 import piece.IPiece;
-import view.View;
 import player.IPlayer;
 
 
@@ -33,6 +32,11 @@ public class Refree{
 	
 	public void addMoveRulePlugin(IMoveRulePlugin plugin) {
 		moveRulePlugins.add(plugin);
+	}
+	
+	//N
+	public void putPieceToSquare(Coordinate destination,IPiece piece) {
+		board.getBoardSurface(destination).addPiece(piece);
 	}
 	
 	public boolean isCorrectMove(Coordinate source, Coordinate destination) {
@@ -74,7 +78,7 @@ public class Refree{
 
 	}
 	
-
+	
 	
 	
 	
@@ -95,7 +99,9 @@ public class Refree{
 	
 	public IPiece getPieceFromCoordinate(Coordinate coord) { //tas kutudan mi yoksa boarddan mi gelecek kontrol edilecek(daha sonra)
 		IBoardSurface square = board.getBoardSurface(coord);
-		return square.getPieceFromSurface();
+		IPiece piece = square.getPieceFromSurface();
+		square.removePiece();
+		return piece;
 	}
 	
 	
@@ -130,8 +136,6 @@ public class Refree{
 		
 	}
 	
-	
-	
 	public void giveTurn(IPlayer player) {
 		
 		// oyuncudan coord al
@@ -149,7 +153,4 @@ public class Refree{
 		// 
 
 	}
-	
-	
-	
 }
