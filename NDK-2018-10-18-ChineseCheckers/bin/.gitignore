@@ -1,4 +1,5 @@
 /game/
+/board/
 /goal/
 /move/
 /moveableInitialFinalCoordinates/

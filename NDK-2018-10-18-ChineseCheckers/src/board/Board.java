@@ -1,7 +1,7 @@
 package board;
 
 import provider.IBoardSurfaceProvider;
-
+// Comment from Kaan
 public class Board implements IBoardSurfaceProvider{
 	private IBoardSurface[][] boardIndexes;
 	
