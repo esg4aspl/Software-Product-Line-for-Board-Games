@@ -18,6 +18,7 @@ import player.IPlayer;
 import provider.IGoalProvider;
 import view.View;
 
+
 public class Game implements IGoalProvider{
 	private Board board;
 	private List<IPlayer> players;
@@ -54,9 +55,6 @@ public class Game implements IGoalProvider{
 		for(int i = 0; i<players.size(); i++) {
 			players.get(i).setPlayerName(playerNames.get(i));
 		}
-
-	
-
 		//	Coordinate c  = view.getCoordinateFromUser("Source");
 		//	System.out.println(c.getColumn()+" "+c.getRow());
 		//System.out.println(board.getBoardSurface(c).getPieceFromSurface().getSymbol());
@@ -64,8 +62,6 @@ public class Game implements IGoalProvider{
 		//Coordinate c1  = view.getCoordinateFromUser("Destination");
 		//	System.out.println(c1.getColumn()+" "+c1.getRow());
 		//	System.out.println(board.getBoardSurface(c1).getPieceFromSurface().getSymbol());
-		
-		
 		
 		IPlayer winner = goalPlugin.isOver(this);
 		IPlayer currentPlayer = null;
@@ -77,16 +73,14 @@ public class Game implements IGoalProvider{
 			
 			for(IPlayer p:players) {
 				System.out.println("Your turn: "+p.getPlayerName());
-			p.takeTurn(view);
-			view.printBoard();
-			winner = goalPlugin.isOver(this);
+				p.takeTurn(view);
+				view.printBoard();
+				winner = goalPlugin.isOver(this);
 			}
 			
-			currentPlayer = referee.getNextPlayer(currentPlayer);
+			//currentPlayer = referee.getNextPlayer(currentPlayer);
 		}
 		System.out.println("Winner is "+winner.getPlayerName());
-
-
 	}
 
 	public void setGoalPlugin(IGoalPlugin goalPlugin) {
@@ -103,9 +97,10 @@ public class Game implements IGoalProvider{
 		gc.init(column, row, numberOfPlayer,numberOfPieceForEachPlayer);
 		View view = new View(gc.getBoard());
 		IGoalPlugin goal = new PiecesToTarget();
-		Game game = new Game(view, gc.getBoard(), gc.getPlayers(),goal);
+		//this part will edit later
+		//Game game = new Game(view, gc.getBoard(), gc.getPlayers(),goal);
 		//Comment from Necati...
-		game.start();
+		//game.start();
 
 	}
 

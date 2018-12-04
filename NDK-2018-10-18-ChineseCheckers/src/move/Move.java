@@ -22,7 +22,7 @@ public abstract class Move {
 	}	
 	
 	public void selectPiece(Coordinate source, Refree referee) { // select piece
-		this.piece = referee.getPiece(source);
+		this.piece = referee.getPieceFromCoordinate(source);
 	}
 
 
@@ -37,7 +37,6 @@ public abstract class Move {
 	public void putPieceToBoard(Coordinate destination, Refree referee) {
 		referee.putPieceToSquare(destination, piece);
 	}
-	
 	
 	public abstract void postOperation(Coordinate source, Coordinate destination, Refree referee);  // check more move, after the move 
 		

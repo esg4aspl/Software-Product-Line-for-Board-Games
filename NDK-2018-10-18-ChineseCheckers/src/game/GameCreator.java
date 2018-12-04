@@ -41,7 +41,6 @@ public class GameCreator {
 	} 
 	
 	private void createBoard(int column,int row) {
-		//Comment from Deniz.
 		board = new Board(column, row);
 		IMovePlugin plugin= new SingleMove();
 		IMovePlugin plugin2= new JumpOverPiece();
