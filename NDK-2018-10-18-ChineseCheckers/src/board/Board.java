@@ -1,39 +1,50 @@
 package board;
 
-import provider.IBoardSurfaceProvider;
+import provider.IBoardSurfaceProvider; // for the plugin does not know about whole board
 
 public class Board implements IBoardSurfaceProvider{
 	private IBoardSurface[][] boardIndexes;
 	
-	public Board(int column,int row) {
-	
+	public Board(int column, int row) {
 		boardIndexes = new IBoardSurface[row][column];
 	}
-	// coordinat da x column 
 	
-	//koordinatlar dýþarýda kontrol edilecektir
+	/**
+	 * get square from given coordinate.
+	 * if square is not in the board, return null
+	 * @return square or null
+	 */
 	public IBoardSurface getBoardSurface(Coordinate coordinate) {
-		//IBoardSurface surface = null;
-		//daha sonra coordinate kontrol edilecek
-		return boardIndexes[coordinate.getRow()][coordinate.getColumn()];
-		//return surface;
+		if(isCoordinateOnBoard(coordinate))
+			return boardIndexes[coordinate.getRow()][coordinate.getColumn()];
+		else
+			return null;
 	}
+	
 	
 	public void addSurface(Coordinate coordinate, IBoardSurface surface) {
-		if(checkCoordinate(coordinate))
+		if(isCoordinateOnBoard(coordinate))
 			boardIndexes[coordinate.getRow()][coordinate.getColumn()] = surface;
 		else
-			System.out.println("Error!!!!! this coordinate is not on BOARD!!!");
+			System.out.println("Error!!!!! this coordinate is not on BOARD!!!"); // it must be changed!!!!!
 	}
 	
-	public void removeSurface(Coordinate coordinate) {
-		//kontrol daha sonra yapýlacak
-		if(checkCoordinate(coordinate))
+	
+	public boolean removeSurface(Coordinate coordinate) {
+		if(isCoordinateOnBoard(coordinate)) {
 			boardIndexes[coordinate.getRow()][coordinate.getColumn()] = null;
+			return true;
+		}else
+			return false;
 	}
 	
-	//daha sonra kontrol yapýlacak
-	public boolean checkCoordinate(Coordinate coordinate) {
+	
+	/**
+	 * coordinate is on the board or not
+	 * @param coordinate
+	 * @return boolean
+	 */
+	public boolean isCoordinateOnBoard(Coordinate coordinate) {
 		int row = coordinate.getRow();
 		int column = coordinate.getColumn();
 		if(row<=boardIndexes.length && column<=boardIndexes[0].length)
@@ -53,3 +64,4 @@ public class Board implements IBoardSurfaceProvider{
 		return boardIndexes.clone();
 	}
 }
+
