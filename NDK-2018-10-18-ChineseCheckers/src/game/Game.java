@@ -14,6 +14,7 @@ import goal.IGoalPlugin;
 import goal.PiecesToTarget;
 import moveableInitialFinalCoordinates.ChineseCheckerCoordinates;
 import moveableInitialFinalCoordinates.IinitialCoordinates;
+import piece.IPiece;
 import player.IPlayer;
 import provider.IGoalProvider;
 import view.View;
@@ -26,19 +27,49 @@ public class Game implements IGoalProvider{
 	private View view;
 	//for now goal plug in number is one later can be change number of goal plug in 
 	//and this can change to list 
-	private IGoalPlugin goalPlugin;
-	
+	private IGoalPlugin goalPlugin;	
 	private Refree referee;
 
-	public Game(View view,Board board,List<IPlayer> players,IGoalPlugin goalPlugin, Refree referee) {
-		this.view = view;
-		this.board =board;
+	public Game(IGoalPlugin goalPlugin) {
 		this.goalPlugin = goalPlugin;
-		this.players =players;
-		this.referee = referee;
 		finalDestinationsForEachPlayer = new HashMap<IPlayer, List<Coordinate>>();
 	}
+	
+	
+	public static void main(String args[]) {
+		int numberOfPlayer = 2;
+		int column=25, row=20;
+		
+		IGoalPlugin goal = new PiecesToTarget();
+		
+		Game game = new Game(goal);
+		game.init(numberOfPlayer, column, row); // can be in constructor of the game object
+		game.start();
 
+	}
+	
+	/**
+	 * Initialize the game: create board, players and pieces. Put pieces on the board
+	 * @param numberOfPlayer
+	 * @param column
+	 * @param row
+	 */	
+	public void init(int numberOfPlayer, int column, int row) {
+		GameFactory factory = new GameFactory();	
+		players = factory.makePlayers(numberOfPlayer); // create players 
+		board = factory.makeBoard(column, row);		// create board with surfaces
+		
+		// put pieces on the board
+		for(IPlayer player : players) {
+			for(IPiece piece : player.getPieces()) {
+				IBoardSurface surface = board.getBoardSurface(piece.getInitialCoordinate()); 
+				surface.addPiece(piece);
+			}
+		}
+		view = new View(board);
+	}
+	
+	// it will be changed.(read from config file)
 	public void mapPlayerAndFinishCoordinates(List<List<Coordinate>> coor) {
 		int i = 0;
 		for(IPlayer p : players) {
@@ -47,6 +78,7 @@ public class Game implements IGoalProvider{
 		}
 	}
 
+	
 	public void start() {
 		view.printBoard();
 
@@ -55,6 +87,8 @@ public class Game implements IGoalProvider{
 		for(int i = 0; i<players.size(); i++) {
 			players.get(i).setPlayerName(playerNames.get(i));
 		}
+		
+		
 		//	Coordinate c  = view.getCoordinateFromUser("Source");
 		//	System.out.println(c.getColumn()+" "+c.getRow());
 		//System.out.println(board.getBoardSurface(c).getPieceFromSurface().getSymbol());
@@ -85,23 +119,6 @@ public class Game implements IGoalProvider{
 
 	public void setGoalPlugin(IGoalPlugin goalPlugin) {
 		this.goalPlugin = goalPlugin;
-	}
-
-	public static void main(String args[]) {
-		int numberOfPlayer=2;
-		int numberOfPieceForEachPlayer = 10;
-		int column=25,row=20;
-		IinitialCoordinates ic = new ChineseCheckerCoordinates(numberOfPlayer);
-		//IinitialCoordinates ic = new CheckerCoordinates();
-		GameCreator gc = new GameCreator(ic);
-		gc.init(column, row, numberOfPlayer,numberOfPieceForEachPlayer);
-		View view = new View(gc.getBoard());
-		IGoalPlugin goal = new PiecesToTarget();
-		//this part will edit later
-		//Game game = new Game(view, gc.getBoard(), gc.getPlayers(),goal);
-		//Comment from Necati...
-		//game.start();
-
 	}
 
 	@Override

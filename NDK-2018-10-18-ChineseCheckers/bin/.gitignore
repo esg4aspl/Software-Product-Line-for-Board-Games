@@ -1,12 +1,1 @@
-/board/
-/enums/
 /game/
-/board/
-/goal/
-/move/
-/moveableInitialFinalCoordinates/
-/piece/
-/player/
-/provider/
-/view/
-/dataAccessLayer/
