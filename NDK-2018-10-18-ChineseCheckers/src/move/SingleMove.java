@@ -12,7 +12,7 @@ public class SingleMove implements IMovePlugin{
 	}
 	@Override
 	public boolean checkMove(Coordinate source, Coordinate destination) {
-//		Coordinate difference = source.subtractFrom(destination);  //single move olup olmadigini kontrol et
+//		Coordinate difference = source.subtractFrom(destination);  
 //		if(difference.getRow()==0 && difference.getColumn()==1) {
 			
 //		}
@@ -20,7 +20,7 @@ public class SingleMove implements IMovePlugin{
 		IBoardSurface destinationSurface = provider.getBoardSurface(destination);
 		System.out.println("movE:"+destinationSurface);
 		
-		if(!(destinationSurface==null)&&!(destinationSurface.getPieceFromSurface()==null)) {  // tas varsa		
+		if(!(destinationSurface==null)&&!(destinationSurface.getPieceFromSurface()==null)) { 
 			return false;
 		}
 		

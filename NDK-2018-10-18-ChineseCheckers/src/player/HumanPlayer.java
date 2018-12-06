@@ -17,11 +17,9 @@ public class HumanPlayer implements IPlayer {
 	private Board board;
 	private Refree referee;
 	
-	public HumanPlayer(Board board,String name, List<IPiece> pieces,Refree referee) {
-		this.referee=referee;
-		this.pieces=pieces;
-		this.setPlayerName(name);
-		this.board=board;
+	public HumanPlayer() {
+	
+		this.pieces=new ArrayList<IPiece>();	
 	}
 	
 	public String getPlayerName() {
@@ -84,6 +82,13 @@ public class HumanPlayer implements IPlayer {
 			}
 		}
 		return false;
+	}
+	
+	public void setPieces(List<IPiece>pieces) {
+		this.pieces=pieces;
+	}
+	public List<IPiece> getPieces(){
+		return pieces;
 	}
 
 

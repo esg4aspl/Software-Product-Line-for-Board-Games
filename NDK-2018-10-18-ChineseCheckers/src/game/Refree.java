@@ -50,7 +50,6 @@ public class Refree{
 		
 		Coordinate[] coords = piece.getMoveDirection();
 		
-		// cogu oyunlar icin ortak  nokta ---------------------
 		
 		boolean isTrueDirection = false;		
 		
@@ -58,19 +57,13 @@ public class Refree{
 			if(difference.equals(c)) 
 				isTrueDirection = true;
 		
-		//----------------------------------------------------
-		//gittigi yerde kare ve tas var mi
 		
-		
-		// plugine sor
 		
 		for(IMovePlugin p : movePlugins) {
 			isTrueDirection = p.checkMove(source, destination);  
-			if(isTrueDirection)   // herhangibir kural saglaniyorsa true
+			if(isTrueDirection)
 				return true;
 		}
-		
-		//----------------------------------------------------
 		
 		
 		
@@ -82,22 +75,14 @@ public class Refree{
 	
 	
 	
-/*	
 	
 	
 	
-	// board içinde ve oynanabilir alanda kordinat seçildi mi
-	public boolean isValidCoordinate(Coordinate cord) {
-		if(board.getBoardSurface(cord).equals(null)) {
-			return false;
-		}
-		return true;
-	}
+	
 
-*/	
 	
 	
-	public IPiece getPieceFromCoordinate(Coordinate coord) { //tas kutudan mi yoksa boarddan mi gelecek kontrol edilecek(daha sonra)
+	public IPiece getPieceFromCoordinate(Coordinate coord) { 
 		IBoardSurface square = board.getBoardSurface(coord);
 		IPiece piece = square.getPieceFromSurface();
 		square.removePiece();
@@ -117,8 +102,7 @@ public class Refree{
 	
 	public void searchRulePlugins(Coordinate source, Coordinate destination) {
 		
-		// 1 koordinat fark varsa SingleMove
-		// 2 koordinat fark varsa JumpMove
+		
 		
 		int rowDifference = Math.abs(destination.getRow() - source.getRow());
 		int columnDifference = Math.abs(destination.getColumn()- source.getColumn());
@@ -138,19 +122,7 @@ public class Refree{
 	
 	public void giveTurn(IPlayer player) {
 		
-		// oyuncudan coord al
 		
-		// tas oyuncunun mu coord board icinde mi
-		
-		//if(sourceCoordinate )
-		// coordlari kontrol et uygun move rule plugini bul
-		// dest e gidebilir mi dolu bos -- rule a gore
-		
-		
-		
-		// coordlari pluginde kontrol et
-		
-		// 
 
 	}
 }

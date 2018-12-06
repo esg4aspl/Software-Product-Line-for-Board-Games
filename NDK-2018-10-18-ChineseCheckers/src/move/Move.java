@@ -14,11 +14,7 @@ public abstract class Move {
 		putPieceToBoard(destination, referee);
 		postOperation(source, destination, referee); //optional
 		
-		/* optional methodlarýn çaðrýlýp çaðrýlmayacaðýný burada mý kontrol etmeliyiz? 
-		 * eðer burada kontrol edersek, optional methodlar ihtiyaç halinde çalýþacak
-		 * burada kontrol etmezsek, bazý move tiplerindeki optional methodlarýn içi boþ olsa da çalýþacak
-		 * içi boþ olduðu için bir iþlem yapmayacak
-		 */
+		
 	}	
 	
 	public void selectPiece(Coordinate source, Refree referee) { // select piece
@@ -27,9 +23,7 @@ public abstract class Move {
 
 
 	
-	/* inOperation optional olduðu için bazý move tiplerinde boþ kalacak, boþ olmasý problem oluþturur mu?
-	 * 
-	 */
+	
 	public abstract void inOperation(Coordinate source, Coordinate destination, Refree referee); 
 	
 

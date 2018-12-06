@@ -4,11 +4,13 @@ import java.util.List;
 
 import board.Coordinate;
 import enums.Color;
+import player.IPlayer;
 
 public class Piece implements IPiece {
 	private List<Coordinate> listOfDirections;
 	private Color color;
 	private String symbol;
+	private IPlayer player;
 	
 	public Piece(Color color,String sybmbol) {
 		this.color = color;
@@ -49,6 +51,9 @@ public class Piece implements IPiece {
 	public String getSymbol() {
 		// TODO Auto-generated method stub
 		return symbol;
+	}
+	public void addPlayer(IPlayer player) {
+		this.player=player;
 	}
 
 }
