@@ -4,7 +4,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import board.Coordinate;
 import enums.Color;
 import piece.IPiece;
 import piece.Piece;
@@ -76,23 +79,19 @@ public class DAL {
 			
 			System.out.println(single+" - "+jump+" - "+multiple);
 			
-			//from now just simple creation later this will change
+			//get all starting locations 
+			Element startingLocations = (Element)currentPieceObject.getElementsByTagName("StartingLocations").item(0);
+			NodeList locations = startingLocations.getElementsByTagName("Location");
+			int row=-1;
+			int column=-1;
 			for(int j = 0; j<numberOfSamePiece;j++) {
-				IPiece piece = new Piece(Color.valueOf(color),name);
+				Element currentLocation  = (Element)locations.item(j);
+				row = Integer.parseInt(currentLocation.getAttribute("row"));
+				column = Integer.parseInt(currentLocation.getAttribute("column"));
+				System.out.println(row +" - "+column); 
+				IPiece piece = new Piece(Color.valueOf(color.toUpperCase()),name,new Coordinate(column, row));
 				pieces.add(piece);
 			}
-				
-			//get starting location
-			//this can be useful for later
-			/*
-			Element startingLocations = (Element)currentPieceObject.getElementsByTagName("StartingLocations").item(0);
-			
-			NodeList locations = startingLocations.getElementsByTagName("Location");
-			for(int j = 0; j<locations.getLength();j++) {
-				Element currentLocation  = (Element)locations.item(j);
-				
-			}
-			*/
 		}
 	}
 	

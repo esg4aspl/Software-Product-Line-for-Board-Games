@@ -9,11 +9,21 @@ public class Piece implements IPiece {
 	private List<Coordinate> listOfDirections;
 	private Color color;
 	private String symbol;
+	private Coordinate initialLocation;
 	
 	public Piece(Color color,String sybmbol) {
 		this.color = color;
 		this.symbol = sybmbol;
 		listOfDirections = new ArrayList<Coordinate>();
+		initialLocation = new Coordinate(-1,-1);
+	}
+	
+	public Piece(Color color,String sybmbol,Coordinate initialLocation) {
+		this.initialLocation = initialLocation;
+	}
+	
+	public Coordinate getInitialLocation() {
+		return initialLocation;
 	}
 	
 	@Override
